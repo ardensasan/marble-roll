@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/marble-roll/static/css/main.8c8b27cf.chunk.css",
+    "main.js": "/marble-roll/static/js/main.fb1e917e.chunk.js",
+    "main.js.map": "/marble-roll/static/js/main.fb1e917e.chunk.js.map",
+    "runtime-main.js": "/marble-roll/static/js/runtime-main.654e4739.js",
+    "runtime-main.js.map": "/marble-roll/static/js/runtime-main.654e4739.js.map",
+    "static/js/2.5f0a459a.chunk.js": "/marble-roll/static/js/2.5f0a459a.chunk.js",
+    "static/js/2.5f0a459a.chunk.js.map": "/marble-roll/static/js/2.5f0a459a.chunk.js.map",
+    "static/js/3.6d88ba81.chunk.js": "/marble-roll/static/js/3.6d88ba81.chunk.js",
+    "static/js/3.6d88ba81.chunk.js.map": "/marble-roll/static/js/3.6d88ba81.chunk.js.map",
+    "index.html": "/marble-roll/index.html",
+    "static/css/main.8c8b27cf.chunk.css.map": "/marble-roll/static/css/main.8c8b27cf.chunk.css.map",
+    "static/js/2.5f0a459a.chunk.js.LICENSE.txt": "/marble-roll/static/js/2.5f0a459a.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/marble-roll/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.654e4739.js",
+    "static/js/2.5f0a459a.chunk.js",
+    "static/css/main.8c8b27cf.chunk.css",
+    "static/js/main.fb1e917e.chunk.js"
+  ]
+}
