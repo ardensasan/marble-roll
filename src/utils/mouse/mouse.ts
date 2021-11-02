@@ -1,6 +1,12 @@
 import { Raycaster, Vector2 } from "three";
+import { ListenerParams } from "./types";
 
-export const addMouseEventListener = ({ camera, scene, marble }: any) => {
+export const addMouseEventListener = ({
+  camera,
+  scene,
+  marble,
+  marbleMesh,
+}: ListenerParams) => {
   const raycaster = new Raycaster();
   const mouse = new Vector2();
   window.addEventListener("mousedown", (event) => {
@@ -8,13 +14,19 @@ export const addMouseEventListener = ({ camera, scene, marble }: any) => {
     mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
     raycaster.setFromCamera(mouse, camera);
     const intersects = raycaster.intersectObjects(scene.children);
-    if (intersects.length > 0) {
-        marble.lookAt(intersects[0].point);
+    if (intersects.length > 0 && intersects[0].object.userData.name !== "Marble") {
+      const distance = marble.getPosition().distanceTo(intersects[0].point)
+      marble.setDistance(distance);
+      marbleMesh.lookAt(intersects[0].point);
     }
   });
 };
 
-export const removeMouseEventListener = ({ camera, scene, marble }: any) => {
+export const removeMouseEventListener = ({
+  camera,
+  scene,
+  marble,
+}: ListenerParams) => {
   const raycaster = new Raycaster();
   const mouse = new Vector2();
   window.addEventListener("mousedown", (event) => {
@@ -23,7 +35,6 @@ export const removeMouseEventListener = ({ camera, scene, marble }: any) => {
     raycaster.setFromCamera(mouse, camera);
     const intersects = raycaster.intersectObjects(scene.children);
     if (intersects.length > 0) {
-      marble.lookAt(intersects[0].point);
     }
   });
 };

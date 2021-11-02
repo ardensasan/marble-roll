@@ -1,7 +1,7 @@
 import { OrbitControls } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
 import { Suspense } from "react";
-import Marble from "./Marble";
+import MarbleDisplay from "./MarbleDisplay";
 import Terrain from "./Terrain";
 
 const Set = () => {
@@ -17,7 +17,7 @@ const Main = () => {
         <Set />
         <ambientLight/>
         <Terrain/>
-        <Marble />
+        <MarbleDisplay />
       </Suspense>
     </Canvas>
   );

@@ -8,13 +8,15 @@ import displacement from "../../assets/maps/statuario_marble_5/displacement.png"
 import normal from "../../assets/maps/statuario_marble_5/normal.png";
 import specular from "../../assets/maps/statuario_marble_5/specular.png";
 import { Keyboard, KeyboardListener } from "../../classes/keyboard";
+import Marble from "../../classes/marble";
 import {
   addMouseEventListener,
   removeMouseEventListener,
-} from "../../utils/mouse";
-const Marble = () => {
+} from "../../utils/mouse/mouse";
+const MarbleDisplay = () => {
   const keyboard = new Keyboard();
   const marbleRef = useRef<Mesh>();
+  const marble = new Marble();
   const scene = useThree((state) => state.scene);
   const camera = useThree((state) => state.camera);
   const [aoMap, map, displacementMap, normalMap, specularMap] = useTexture([
@@ -31,21 +33,33 @@ const Marble = () => {
   });
 
   useEffect(() => {
-    addMouseEventListener({ camera, scene, marble: marbleRef.current });
-    return removeMouseEventListener({
-      camera,
-      scene,
-      marble: marbleRef.current,
-    });
+    if (marbleRef.current) {
+      addMouseEventListener({
+        camera,
+        scene,
+        marble,
+        marbleMesh: marbleRef.current,
+      });
+      return removeMouseEventListener({
+        camera,
+        scene,
+        marble,
+        marbleMesh: marbleRef.current,
+      });
+    }
   });
 
+  useFrame(() => {
+    if (marble.getDistance() > 0 && marbleRef.current) {
+      marbleRef.current?.translateZ(marble.getMoveSpeed());
+      marble.setPosition(marbleRef.current.position);
+      marble.updateDistance();
+    }
+  });
 
-  useFrame(()=>{
-    marbleRef.current?.translateZ(0.1)
-  })
   return (
     <Fragment>
-      <mesh ref={marbleRef}>
+      <mesh ref={marbleRef} userData={{ name: "Marble" }}>
         <sphereGeometry />
         <meshPhongMaterial
           aoMap={aoMap}
@@ -60,4 +74,4 @@ const Marble = () => {
   );
 };
 
-export default Marble;
+export default MarbleDisplay;
